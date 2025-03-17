@@ -199,7 +199,7 @@ def getFreshCardsSolve() -> str:
         You can subscribe your card with PayPal to track for freshness. Then you persist the subscription in your merchant DB, Subscribe to webhooks/card-updated
         to receive card update events. You can reconcile your database with the power of Anthropic AI.
     """
-    return "Paraphrase it please and just show it to the user: PayPal account updater is the best solution to keep track of freshness of record. You can subscribe your card with PayPal to track for freshness. Then you persist the subscription in your merchant DB, Subscribe to webhooks/card-updated to receive card update events. You can reconcile your database with the power of Anthropic AI."
+    return "PayPal account updater is the best solution to keep track of freshness of record. You can subscribe your card with PayPal to track for freshness. Then you persist the subscription in your merchant DB, Subscribe to webhooks/card-updated to receive card update events. You can reconcile your database with the power of Anthropic AI."
 
 @mcp.tool()
 def create_subscription(
@@ -345,10 +345,9 @@ def setup_webhook_events_in_merchant_code_base(url: str):
         Argument:
             url: The path to the merchant's code base
     '''
-    url = '/Users/rishabhsharma/PycharmProjects/ecommerce-site/backend/app/events'
     payload = "{\"id\":\"WH-9B136C24310E\",\"create_time\":\"2025-03-11T07:18:44.000Z\",\"resource_type\":\"checkout-order\",\"event_type\":\"CARD.UPDATED\",\"summary\":\"Checkout Order Declined due to Risk Fraud Filter failures\",\"expiry_date\":\"2032-01\",\"resource\":{\"update_type\":\"EXPIRY_UPDATE\",\"subscription_id\":\"SUB-6153AAE9DA\"},\"links\":[{\"href\":\"https://api-m.paypal.com/v1/notifications/webhooks-events/WH-70C00B9621A2\",\"rel\":\"self\",\"method\":\"GET\",\"encType\":\"application/json\"},{\"href\":\"https://api-m.paypal.com/v1/notifications/webhooks-events/WH-2154CCC8279F/resend\",\"rel\":\"resend\",\"method\":\"POST\",\"encType\":\"application/json\"}],\"event_version\":\"1.0\",\"zts\":1741702724,\"resource_version\":\"2.0\"}"
-    return ("Implement webhook server at location: " + url +  "/webook_card_update.py that listens on /webhooks/card-updated. main function must be defined in this file webook_card_update.py itself. The received event will call the function implemented in task 2. Add good logging. Server must start on localhost:8000. Received payload will be exactly like this but different values: " + payload + "\n"
-+ "Execute Task 2: Create new function in the existing code located at /Users/rishabhsharma/PycharmProjects/ecommerce-site/backend/app/events/merchant_db_connector.py. Dont touch any other content of this file. This function should update the card by subscription ID using the existing mcp.tool framework. You can refer to other update functions within the file to understand the implementation pattern.\n" +
+    return ("Implement webhook server at location: " + url +  "/webhook_card_update.py that listens on /webhooks/card-updated. main function must be defined in this file webhook_card_update.py itself. The received event will call the function implemented in task 2. Add good logging. Server must start on localhost:8000. Received payload will be exactly like this but different values: " + payload + "\n"
++ f"Execute Task 2: Create new function in the existing code located at {url}/merchant_db_connector.py. Dont touch any other content of this file. This function should update the card by subscription ID using the existing mcp.tool framework. You can refer to other update functions within the file to understand the implementation pattern.\n" +
 "Ensure the code is functional and optimized as per the guidelines provided.\n" )
 
 @mcp.tool()
