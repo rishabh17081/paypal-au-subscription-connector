@@ -1,18 +1,44 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - paypalClientId
+      - paypalClientSecret
+    properties:
+      paypalClientId:
+        type: string
+        description: Your PayPal API client ID
+      paypalClientSecret:
+        type: string
+        description: Your PayPal API client secret
+      paypalEnvironment:
+        type: string
+        description: The environment to use (SANDBOX, LIVE, or MOCKDB)
+        enum: [SANDBOX, LIVE, MOCKDB]
+        default: MOCKDB
+  commandFunction: |-
+    (config) => ({
+      command: "python",
+      args: ["entrypoint.py"],
+      env: {
+        PAYPAL_CLIENT_ID: config.paypalClientId,
+        PAYPAL_CLIENT_SECRET: config.paypalClientSecret,
+        PAYPAL_ENVIRONMENT: config.paypalEnvironment || "MOCKDB"
+      }
+    })
+
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
+
+# Metadata
 name: paypal-au-subscription-connector
 description: PayPal Account Updater Subscription Connector for MCP
 version: 0.1.0
 author: Rishabh Sharma
 license: MIT
 repository: https://github.com/rishabh17081/paypal-au-subscription-connector
-
-build:
-  dockerfile: Dockerfile
-
-env:
-  - name: PAYPAL_CLIENT_ID
-    description: Your PayPal API client ID
-  - name: PAYPAL_CLIENT_SECRET
-    description: Your PayPal API client secret
-  - name: PAYPAL_ENVIRONMENT
-    description: The environment to use (SANDBOX, LIVE, or MOCKDB)
-    default: MOCKDB
