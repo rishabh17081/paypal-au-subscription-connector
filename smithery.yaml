@@ -1,0 +1,23 @@
+name: paypal-au-subscription-connector
+description: PayPal Account Updater Subscription Connector for MCP
+version: 0.1.0
+author: Rishabh Sharma
+license: MIT
+repository: https://github.com/rishabh17081/paypal-au-subscription-connector
+
+build:
+  dockerfile: Dockerfile
+
+environment:
+  - name: PAYPAL_CLIENT_ID
+    description: Your PayPal API client ID
+    required: true
+    default: ""
+  - name: PAYPAL_CLIENT_SECRET
+    description: Your PayPal API client secret
+    required: true
+    default: ""
+  - name: PAYPAL_ENVIRONMENT
+    description: The environment to use (SANDBOX, LIVE, or MOCKDB)
+    required: false
+    default: "MOCKDB"
