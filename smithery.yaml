@@ -8,16 +8,11 @@ repository: https://github.com/rishabh17081/paypal-au-subscription-connector
 build:
   dockerfile: Dockerfile
 
-environment:
-  PAYPAL_CLIENT_ID:
+env:
+  - name: PAYPAL_CLIENT_ID
     description: Your PayPal API client ID
-    required: true
-    default: ""
-  PAYPAL_CLIENT_SECRET:
+  - name: PAYPAL_CLIENT_SECRET
     description: Your PayPal API client secret
-    required: true
-    default: ""
-  PAYPAL_ENVIRONMENT:
+  - name: PAYPAL_ENVIRONMENT
     description: The environment to use (SANDBOX, LIVE, or MOCKDB)
-    required: false
-    default: "MOCKDB"
+    default: MOCKDB
