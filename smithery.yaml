@@ -33,12 +33,3 @@ startCommand:
 
 build:
   dockerfile: Dockerfile
-  dockerBuildPath: .
-
-# Metadata
-name: paypal-au-subscription-connector
-description: PayPal Account Updater Subscription Connector for MCP
-version: 0.1.0
-author: Rishabh Sharma
-license: MIT
-repository: https://github.com/rishabh17081/paypal-au-subscription-connector
